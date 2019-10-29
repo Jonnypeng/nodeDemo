@@ -1,0 +1,20 @@
+{
+  "name": "l-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "private",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/rx": "^4.1.1",
+    "puppeteer": "^1.20.0",
+    "rx": "^4.1.0",
+    "rxjs": "^6.5.3"
+  },
+  "devDependencies": {
+    "@types/puppeteer": "^1.20.2"
+  }
+}
