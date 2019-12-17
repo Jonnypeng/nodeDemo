@@ -1,12 +1,12 @@
-import * as childProcess from "child_process";
-import * as puppeteer from "puppeteer";
-import * as path from "path";
+var childProcess =  require("child_process");
+var puppeteer = require("puppeteer");
+var path = require("path");
 
 let urls = {
     index: 0,
     arr: [],
     mkUrl: () => {
-        for (let i = 0; i < 11; i++) {
+        for (let i = 11; i < 12; i++) {
             let url = `https://minigame.civaonline.cn/#/game${i + 3}`;
             urls.arr.push(url);
             urls.targetNames.push(`game${i + 3}`);
@@ -18,7 +18,7 @@ let urls = {
 
 urls.mkUrl();
 
-let openPage = async (browser: puppeteer.Browser, url: string) => {
+let openPage = async (browser, url) => {
         const page = await browser.newPage();
         await page.goto(url);
         setTimeout(async () => {
@@ -29,19 +29,19 @@ let openPage = async (browser: puppeteer.Browser, url: string) => {
         }, 6000)
 }
 
-let openBrowser = (url: string) => {
-    puppeteer.launch(<puppeteer.LaunchOptions>{headless:false})
+let openBrowser = (url) => {
+    puppeteer.launch({headless:false})
         .then(browser => {
             openPage(browser, url);
         })
 }
 
-function screenShot(browser: puppeteer.Browser, page: puppeteer.Page) {
+function screenShot(browser, page ) {
     setTimeout(async () => {
-        await page.screenshot(<puppeteer.Base64ScreenShotOptions>{
+        await page.screenshot({
             path: urls.targetPath + "/" + urls.targetNames[urls.index] + ".jpg",
             type: "jpeg",
-            clip: <puppeteer.BoundingBox>{
+            clip: {
                 x: 0,
                 y: 83,
                 width: 800,
