@@ -4,11 +4,12 @@ class DataType {
         this.label = label;
         this.display = display;
         this.vModel = vModel;
+        this.radio = radio;
         this.template = "";
         if (this.type === "file") {
             this.template = `
             <el-upload
-            class="avatar-uploader
+            class="avatar-uploader"
             <img v-if=${this.display} :src="" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
@@ -16,23 +17,23 @@ class DataType {
         }
         if (this.type === "input") {
             this.template = `
-            <el-form-item v-if=${this.display} label=${this.label} class="flex-center">
-                 <el-input v-model=${this.vModel}></el-input>
+            <el-form-item v-if="${this.display}" label="${this.label}" class="flex-center">
+                 <el-input v-model="${this.vModel}"></el-input>
             </el-form-item>
             `
         }
         if (this.type === "date") {
             this.template = `
-            <el-form-item v-if=${this.display} label=${this.label} class="flex-center">
-                <el-date-picker v-model=${this.vModel} type="date" placeholder="选择日期">
+            <el-form-item v-if="${this.display}" label="${this.label}" class="flex-center">
+                <el-date-picker v-model="${this.vModel}" type="date" placeholder="选择日期">
                 </el-date-picker>
             </el-form-item>
             `
         }
         if (this.type === "radio") {
             this.template = `
-            <el-form-item label=${this.label} class="flex-center">
-            <el-radio-group v-model=${this.vModel}>
+            <el-form-item label="${this.label}" class="flex-center">
+            <el-radio-group v-model="${this.vModel}">
                 ${this.radio}
             </el-radio-group>
         </el-form-item>    
@@ -43,14 +44,6 @@ class DataType {
 }
 
 var employeeInfoData = {
-    employeeAccountVo: {
-        accountImg: new DataType("file", "银行卡照片", "employeeInfoData.employeeAccountVo.accountImg", false),
-        accountName: new DataType("input", "账户名", "employeeInfoData.employeeAccountVo.accountName", true),
-        accountNo: new DataType("input", " 账号 ", "employeeInfoData.employeeAccountVo.accountNo", true),
-        employeeId: new DataType("input", "员工id ", "employeeInfoData.employeeAccountVo.employeeId", false),
-        id: new DataType("input", "员工账户id", "employeeInfoData.employeeAccountVo.id", false),
-        openBank: new DataType("input", "开户行", "employeeInfoData.employeeAccountVo.openBank", true)
-    },
     employeeDetailVo: {
         archivesNo: new DataType("input", "员工档案编号 ", "employeeInfoData.employeeDetailVo.archivesNo", false),
         cardNo: new DataType("input", " 身份证号码 ", "employeeInfoData.employeeDetailVo.cardNo", true),
@@ -71,7 +64,7 @@ var employeeInfoData = {
             `<el-radio label="实习员工 " value="实习员工 "></el-radio>
         <el-radio label="试用员工 " value="试用员工 "></el-radio>
         <el-radio label="正式员工 " value="正式员工 "></el-radio>
-        <el-radio label="离职员工 " value=""离职员工 ></el-radio>
+        <el-radio label="离职员工 " value="离职员工"></el-radio>
         `),
         highestEducation: new DataType("input", " 最高学历 ", "employeeInfoData.employeeDetailVo.highestEducation", true),
         id: new DataType("input", " 员工id ", "employeeInfoData.employeeDetailVo.id", true),
@@ -92,7 +85,7 @@ var employeeInfoData = {
         positionId: new DataType("input", " 职位id", "employeeInfoData.employeeDetailVo.positionId", true),
         positionName: new DataType("input", "员工职位", "employeeInfoData.employeeDetailVo.positionName", true),
         positiveTime: new DataType("date", " 员工转正时间", "employeeInfoData.employeeDetailVo.positiveTime", true),
-        rehired: new DataType("radio", "是否返聘", "employeeInfoData.employeeDetailVo.rehired", true, `
+        rehired: new DataType("radio", "是否返聘", "employeeInfoData.employeeDetailVo.rehired", true,`
         <el-radio label="否" value="0"></el-radio>
         <el-radio label="是" value="1"></el-radio> 
         `),
@@ -113,13 +106,21 @@ var employeeInfoData = {
         updateTime: new DataType("input", "更新时间 ", "employeeInfoData.employeeDetailVo.updateTime", false),
         updateUser: new DataType("input", " 更新人 ", "employeeInfoData.employeeDetailVo.updateUser", false)
     },
+     employeeAccountVo: {
+        accountImg: new DataType("file", "银行卡照片", "employeeInfoData.employeeAccountVo.accountImg", false),
+        accountName: new DataType("input", "账户名", "employeeInfoData.employeeAccountVo.accountName", true),
+        accountNo: new DataType("input", " 账号 ", "employeeInfoData.employeeAccountVo.accountNo", true),
+        employeeId: new DataType("input", "员工id ", "employeeInfoData.employeeAccountVo.employeeId", false),
+        id: new DataType("input", "员工账户id", "employeeInfoData.employeeAccountVo.id", false),
+        openBank: new DataType("input", "开户行", "employeeInfoData.employeeAccountVo.openBank", true)
+    },
     employeeInfoVo: {
         accidentPremium: new DataType("input", " 意外保险费 ", "employeeInfoData.employeeInfoVo.accidentPremium", true),
         accumulationFundBuyInfo: new DataType("input", " 公积金购买情况 ", "employeeInfoData.employeeInfoVo.accumulationFundBuyInfo", true),
         accumulationFundDate: new DataType("date", " 公积金开始时间 ", "employeeInfoData.employeeInfoVo.accumulationFundDate", true),
         accumulationFundPersonal: new DataType("input", " 公积金个人金额 ", "employeeInfoData.employeeInfoVo.accumulationFundPersonal", true),
         accumulationFundStopMouth: new DataType("date", " 公积金停缴月 ", "employeeInfoData.employeeInfoVo.accumulationFundStopMouth", true),
-        assistantToTeacher: new DataType("radio", " 是否助教转岗 0否 1是 ", "employeeInfoData.employeeInfoVo.assistantToTeacher", true, `
+        assistantToTeacher: new DataType("radio", "是否助教转岗", "employeeInfoData.employeeInfoVo.assistantToTeacher", true, `
         <el-radio label="否" value="0"></el-radio>
         <el-radio label="是" value="1"></el-radio>  
         `),
@@ -129,7 +130,7 @@ var employeeInfoData = {
         dutyLevel: new DataType("radio", "职务等级 ", "employeeInfoData.employeeInfoVo.dutyLevel", true, `
         <el-radio label="0" value="0"></el-radio>
         <el-radio label="1" value="1"></el-radio>  
-        `), 
+        `),
         emergencyContact: new DataType("input", " 紧急联系人 ", "employeeInfoData.employeeInfoVo.emergencyContact", true),
         emergencyContactPhone: new DataType("input", " 紧急联系人电话 ", "employeeInfoData.employeeInfoVo.emergencyContactPhone", true),
         emergencyContactRelation: new DataType("input", " 紧急联系人关系 ", "employeeInfoData.employeeInfoVo.emergencyContactRelation", true),
@@ -144,8 +145,8 @@ var employeeInfoData = {
         maternityLeaveEndTime: new DataType("date", " 产假结束时间 ", "employeeInfoData.employeeInfoVo.maternityLeaveEndTime", true),
         maternityLeaveStartTime: new DataType("date", " 产假开始时间 ", "employeeInfoData.employeeInfoVo.maternityLeaveStartTime", true),
         maternityLeaveTwoEndTime: new DataType("date", " 二胎产假结束时间 ", "employeeInfoData.employeeInfoVo.maternityLeaveTwoEndTime", true),
-        maternityLeaveTwoStartTime:new DataType("date",  " 二胎产假开始时间 ", "employeeInfoData.employeeInfoVo.maternityLeaveTwoStartTime", true),
-        refundTrainingDate:new DataType("date",  " 退培训费时间 ", "employeeInfoData.employeeInfoVo.refundTrainingDate", true),
+        maternityLeaveTwoStartTime: new DataType("date", " 二胎产假开始时间 ", "employeeInfoData.employeeInfoVo.maternityLeaveTwoStartTime", true),
+        refundTrainingDate: new DataType("date", " 退培训费时间 ", "employeeInfoData.employeeInfoVo.refundTrainingDate", true),
         refundTrainingTotal: new DataType("input", " 退培训费合计 ", "employeeInfoData.employeeInfoVo.refundTrainingTotal", true),
         remark2: new DataType("input", " 备注2 ", "employeeInfoData.employeeInfoVo.remark2", true),
         selfLevel: new DataType("input", " 自身等级 ", "employeeInfoData.employeeInfoVo.selfLevel", true),
@@ -153,15 +154,17 @@ var employeeInfoData = {
         socialInsuranceDetail: new DataType("input", " 合同、五险一金归属细分 ", "employeeInfoData.employeeInfoVo.socialInsuranceDetail", true),
         specialAgreement: new DataType("input", " 专项协议 ", "employeeInfoData.employeeInfoVo.specialAgreement", true),
         specialSkills: new DataType("input", " 特殊技能 ", "employeeInfoData.employeeInfoVo.specialSkills", true),
-        starLevel:new DataType("radio", "星级 ", "employeeInfoData.employeeInfoVo.starLevel", true, `
+        starLevel: new DataType("radio", "星级 ", "employeeInfoData.employeeInfoVo.starLevel", true, `
         <el-radio label="0" value="0"></el-radio>
         <el-radio label="1" value="1"></el-radio>  
-        `), 
-        starType:new DataType("radio"," 星级类别 ", "employeeInfoData.employeeInfoVo.starType", true, `
+        `),
+        starType: new DataType("radio", " 星级类别 ", "employeeInfoData.employeeInfoVo.starType", true, `
         <el-radio label="0" value="0"></el-radio>
         <el-radio label="1" value="1"></el-radio>  
-        `),  
+        `),
         trainingEnd: new DataType("input", " 教师培训费结束 ", "employeeInfoData.employeeInfoVo.trainingEnd", true),
         unionInfo: new DataType("input", " 联盟", "employeeInfoData.employeeInfoVo.unionInfo", true)
     }
 } 
+
+module.exports = employeeInfoData;
