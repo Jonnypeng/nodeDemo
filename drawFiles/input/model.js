@@ -10,7 +10,7 @@ class DataType {
             this.template = `
             <el-upload
             class="avatar-uploader"
-            <img v-if=${this.display} :src="" class="avatar">
+            <img v-if=${this.display} src="" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
             `
@@ -45,20 +45,44 @@ class DataType {
 
 var employeeInfoData = {
     employeeDetailVo: {
-        archivesNo: new DataType("input", "员工档案编号 ", "employeeInfoData.employeeDetailVo.archivesNo", false),
+        employeeName: new DataType("input", " 员工姓名 ", "employeeInfoData.employeeDetailVo.employeeName", true),
+        mobilePhone: new DataType("input", " 员工电话 ", "employeeInfoData.employeeDetailVo.mobilePhone", true),
+        sex: new DataType("radio", "员工性别", "employeeInfoData.employeeDetailVo.sex", true, `
+        <el-radio label="男" value="0"></el-radio>
+        <el-radio label="女" value="1"></el-radio> 
+        `),
+        national: new DataType("input", " 民族 ", "employeeInfoData.employeeDetailVo.national", true),
+        birthday: new DataType("date", " 生日 ", "employeeInfoData.employeeInfoVo.birthday", true),
+        email: new DataType("input", " 邮箱 ", "employeeInfoData.employeeDetailVo.email", true),
+        marriageStatus: new DataType("radio", " 婚姻情况", "employeeInfoData.employeeDetailVo.marriageStatus", true,`
+        <el-radio label="未婚" value="0"></el-radio>
+        <el-radio label="已婚" value="1"></el-radio>
+        `),
+        politicalLandscape: new DataType("radio", "政治面貌", "employeeInfoData.employeeDetailVo.politicalLandscape", true,
+            `
+        <el-radio label="团员" value="团员"></el-radio>
+        <el-radio label="党员" value="党员"></el-radio>
+        <el-radio label="群众" value="群众 "></el-radio>
+        <el-radio label="无党派民主人士" value="无党派民主人士 "></el-radio>
+        <el-radio label="其他" value="其他 "></el-radio>
+        `),
         cardNo: new DataType("input", " 身份证号码 ", "employeeInfoData.employeeDetailVo.cardNo", true),
+        nativePlace: new DataType("input", " 籍贯 ", "employeeInfoData.employeeDetailVo.nativePlace", true),
+        residenceAddress: new DataType("input", "户口所在地", "employeeInfoData.employeeDetailVo.residenceAddress", true),
+        residenceType: new DataType("radio", "户口类型", "employeeInfoData.employeeDetailVo.residenceType", true, `
+        <el-radio label="农村" value="0"></el-radio>
+        <el-radio label="城镇" value="1"></el-radio> 
+        `),
+        currentAddress: new DataType("input", " 当前居住地 ", "employeeInfoData.employeeDetailVo.currentAddress", true),
         companyName: new DataType("input", " 公司名称 ", "employeeInfoData.employeeDetailVo.companyName", true),
         contractExpireDate: new DataType("date", " 合同到期时间 ", "employeeInfoData.employeeDetailVo.contractExpireDate", true),
         contractSignDate: new DataType("date", " 合同签订时间 ", "employeeInfoData.employeeDetailVo.contractSignDate", true),
         createTime: new DataType("date", " 创建时间 ", "employeeInfoData.employeeDetailVo.createTime", true),
         createUser: new DataType("input", " 创建人 ", "employeeInfoData.employeeDetailVo.createUser", true),
-        currentAddress: new DataType("input", " 当前居住地 ", "employeeInfoData.employeeDetailVo.currentAddress", true),
         currentSalary: new DataType("input", " 当前工资 ", "employeeInfoData.employeeDetailVo.currentSalary", true),
         dateEntry: new DataType("date", " 员工入职时间 ", "employeeInfoData.employeeDetailVo.dateEntry", true),
-        departmentId: new DataType("date", " 部门id", "employeeInfoData.employeeDetailVo.departmentId", true),
+        departmentId: new DataType("input", " 部门id", "employeeInfoData.employeeDetailVo.departmentId", true),
         departmentName: new DataType("input", " 员工所属部门 ", "employeeInfoData.employeeDetailVo.departmentName", true),
-        email: new DataType("input", " 邮箱 ", "employeeInfoData.employeeDetailVo.email", true),
-        employeeName: new DataType("input", " 员工姓名 ", "employeeInfoData.employeeDetailVo.employeeName", true),
         employeeNo: new DataType("input", " 员工编号 ", "employeeInfoData.employeeDetailVo.employeeNo", true),
         employeeType: new DataType("radio", " 员工类型", "employeeInfoData.employeeDetailVo.employeeType", true,
             `<el-radio label="实习员工 " value="实习员工 "></el-radio>
@@ -70,18 +94,6 @@ var employeeInfoData = {
         id: new DataType("input", " 员工id ", "employeeInfoData.employeeDetailVo.id", true),
         jobLevel: new DataType("input", " 员工职级 ", "employeeInfoData.employeeDetailVo.jobLevel", true),
         major: new DataType("input", " 最高学历对应的专业 ", "employeeInfoData.employeeDetailVo.major", true),
-        marriageStatus: new DataType("input", " 婚姻情况 0未婚 1已婚 ", "employeeInfoData.employeeDetailVo.marriageStatus", true),
-        mobilePhone: new DataType("input", " 员工电话 ", "employeeInfoData.employeeDetailVo.mobilePhone", true),
-        national: new DataType("input", " 民族 ", "employeeInfoData.employeeDetailVo.national", true),
-        nativePlace: new DataType("input", " 籍贯 ", "employeeInfoData.employeeDetailVo.nativePlace", true),
-        politicalLandscape: new DataType("radio", "政治面貌", "employeeInfoData.employeeDetailVo.politicalLandscape", true,
-            `
-        <el-radio label="团员" value="团员"></el-radio>
-        <el-radio label="党员" value="党员"></el-radio>
-        <el-radio label="群众" value="群众 "></el-radio>
-        <el-radio label="无党派民主人士" value="无党派民主人士 "></el-radio>
-        <el-radio label="其他" value="其他 "></el-radio>
-        `),
         positionId: new DataType("input", " 职位id", "employeeInfoData.employeeDetailVo.positionId", true),
         positionName: new DataType("input", "员工职位", "employeeInfoData.employeeDetailVo.positionName", true),
         positiveTime: new DataType("date", " 员工转正时间", "employeeInfoData.employeeDetailVo.positiveTime", true),
@@ -89,30 +101,22 @@ var employeeInfoData = {
         <el-radio label="否" value="0"></el-radio>
         <el-radio label="是" value="1"></el-radio> 
         `),
-        residenceAddress: new DataType("input", "户口所在地", "employeeInfoData.employeeDetailVo.residenceAddress", true),
-        residenceType: new DataType("radio", "户口类型", "employeeInfoData.employeeDetailVo.residenceType", true, `
-        <el-radio label="农村" value="0"></el-radio>
-        <el-radio label="城镇" value="1"></el-radio> 
-        `),
-        sex: new DataType("radio", "员工性别", "employeeInfoData.employeeDetailVo.sex", true, `
-        <el-radio label="男" value="0"></el-radio>
-        <el-radio label="女" value="1"></el-radio> 
-        `),
         signContract: new DataType("radio", "是否签订合同", "employeeInfoData.employeeDetailVo.signContract", true, `
         <el-radio label="否" value="0"></el-radio>
         <el-radio label="是" value="1"></el-radio> 
         `),
-        socialSecurityCardNo: new DataType("input", "社会保障卡号", "employeeInfoData.employeeDetailVo.socialSecurityCardNo", true),
-        updateTime: new DataType("input", "更新时间 ", "employeeInfoData.employeeDetailVo.updateTime", false),
-        updateUser: new DataType("input", " 更新人 ", "employeeInfoData.employeeDetailVo.updateUser", false)
+        socialSecurityCardNo: new DataType("input", "社会保障卡号", "employeeInfoData.employeeDetailVo.socialSecurityCardNo", true)
+        // updateTime: new DataType("input", "更新时间 ", "employeeInfoData.employeeDetailVo.updateTime", false),
+        // updateUser: new DataType("input", " 更新人 ", "employeeInfoData.employeeDetailVo.updateUser", false)
+        //archivesNo: new DataType("input", "员工档案编号 ", "employeeInfoData.employeeDetailVo.archivesNo", false),
     },
-     employeeAccountVo: {
-        accountImg: new DataType("file", "银行卡照片", "employeeInfoData.employeeAccountVo.accountImg", false),
+    employeeAccountVo: {
         accountName: new DataType("input", "账户名", "employeeInfoData.employeeAccountVo.accountName", true),
         accountNo: new DataType("input", " 账号 ", "employeeInfoData.employeeAccountVo.accountNo", true),
-        employeeId: new DataType("input", "员工id ", "employeeInfoData.employeeAccountVo.employeeId", false),
-        id: new DataType("input", "员工账户id", "employeeInfoData.employeeAccountVo.id", false),
-        openBank: new DataType("input", "开户行", "employeeInfoData.employeeAccountVo.openBank", true)
+        openBank: new DataType("input", "开户行", "employeeInfoData.employeeAccountVo.openBank", true),
+        // accountImg: new DataType("file", "银行卡照片", "employeeInfoData.employeeAccountVo.accountImg", false),
+        // employeeId: new DataType("input", "员工id ", "employeeInfoData.employeeAccountVo.employeeId", false),
+        //id: new DataType("input", "员工账户id", "employeeInfoData.employeeAccountVo.id", false),
     },
     employeeInfoVo: {
         accidentPremium: new DataType("input", " 意外保险费 ", "employeeInfoData.employeeInfoVo.accidentPremium", true),
@@ -125,7 +129,6 @@ var employeeInfoData = {
         <el-radio label="是" value="1"></el-radio>  
         `),
         belongInfo: new DataType("input", " 行政归属 ", "employeeInfoData.employeeInfoVo.belongInfo", true),
-        birthday: new DataType("date", " 生日 ", "employeeInfoData.employeeInfoVo.birthday", true),
         duty: new DataType("input", " 职务 ", "employeeInfoData.employeeInfoVo.duty", true),
         dutyLevel: new DataType("radio", "职务等级 ", "employeeInfoData.employeeInfoVo.dutyLevel", true, `
         <el-radio label="0" value="0"></el-radio>
@@ -138,7 +141,6 @@ var employeeInfoData = {
         employerRisk: new DataType("input", " 雇主险 ", "employeeInfoData.employeeInfoVo.employerRisk", true),
         groupInfo: new DataType("input", " 组别 ", "employeeInfoData.employeeInfoVo.groupInfo", true),
         healthCareTime: new DataType("date", " 医保参保时间 ", "employeeInfoData.employeeInfoVo.healthCareTime", true),
-        id: new DataType("input", "主键id", "employeeInfoData.employeeInfoVo.id", false),
         lengthService: new DataType("input", " 工龄 ", "employeeInfoData.employeeInfoVo.lengthService", true),
         marriageLeaveEndTime: new DataType("date", " 婚假结束时间 ", "employeeInfoData.employeeInfoVo.marriageLeaveEndTime", true),
         marriageLeaveStartTime: new DataType("date", "婚假开始时间", "employeeInfoData.employeeInfoVo.marriageLeaveStartTime", true),
@@ -164,6 +166,7 @@ var employeeInfoData = {
         `),
         trainingEnd: new DataType("input", " 教师培训费结束 ", "employeeInfoData.employeeInfoVo.trainingEnd", true),
         unionInfo: new DataType("input", " 联盟", "employeeInfoData.employeeInfoVo.unionInfo", true)
+        //id: new DataType("input", "主键id", "employeeInfoData.employeeInfoVo.id", false),
     }
 } 
 
